@@ -1,0 +1,29 @@
+name: Copy Website-Samples to GitHub Pages Repo
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Website-Samples repo
+        uses: actions/checkout@v3
+
+      - name: Clone GitHub Pages repo
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          
+          git clone https://x-access-token:${{ secrets.GH_PAGES_TOKEN }}@github.com/Cryptoball7/Cryptoball7.github.io.git gh-pages
+          
+      - name: Copy Website-Samples
+        run: |
+          cp * gh-pages/Website-Samples
+          cd gh-pages
+          git add .
+          git commit -m "Update Website-Samples from Website-Samples repo [skip ci]" || echo "No changes to commit"
+          git push
