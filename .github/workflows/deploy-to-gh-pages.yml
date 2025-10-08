@@ -26,7 +26,7 @@ jobs:
           
       - name: Copy Website-Samples
         run: |
-          cp -r ws gh-pages/Website-Samples
+          cp -r ws/* gh-pages/Website-Samples
           cd gh-pages
           git add .
           git commit -m "Update Website-Samples from Website-Samples repo [skip ci]" || echo "No changes to commit"
