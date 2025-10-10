@@ -26,6 +26,7 @@ jobs:
           
       - name: Copy Website-Samples
         run: |
+          rm -r gh-pages/Website-Samples/*
           cp -r ws/* gh-pages/Website-Samples
           cd gh-pages
           git add .
